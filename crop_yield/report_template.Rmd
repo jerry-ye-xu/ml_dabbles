@@ -1,0 +1,410 @@
+---
+title: "Analysis and Experimental Design for Warley Trial 2018"
+author: "311304397"
+date: "18/05/2018"
+output: pdf_document
+---
+
+Please ensure the relevant packages are installed before attempting to run the code.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(lme4)
+```
+
+# Executive Summary
+
+
+We wish to deduce which Warley varieties have the highest merit, determined by greatest positive slope of the linear model, and design an experiment for the next round of planting for 5 new varieties. 
+ 
+__Experiment Overview:__
+
+The best varieties were determined by fitting a correlated Site~Variety random effects model which accounts for variety yieds that may have been influenced by the site location and assumes that this effect is different for each variety.
+
+The experimental plots were designed with randomisation and potential blocking effects in mind to avoid potential bias. 
+
+__Summary Results:__
+
+The 2 best varieties according to the results are `Gangar` and `Wartortle`. 
+
+The `Eevee` variety performed the best at Northstar but its performance fluctuated significantly across the 3 sites relative to the other varieties. 
+
+We will select `Gangar` and `Wartortle` to be used in the next experiement. 
+
+
+# Key Results
+
+Let's examine the data first, checking for the design of the field plots and other summary statistics. 
+
+```{r}
+
+crops <- read.csv("./w13_yield.csv", sep = ",")
+summary(crops)
+
+unique(crops$Variety)
+```
+
+We have an equal number of wheat samples on different fields at the same site but for now we are only interested in the Warley varieties. Let's subset the dataset. 
+
+
+__Exploratory Data Analysis__ 
+
+```{r}
+
+warley <- subset(crops[crops$Species == "Warley", ])
+summary(warley)
+```
+
+There appears to be a negative yield in the dataset. Before proceeding further we should examine the data to determine whether there might be other impossible values. 
+
+```{r}
+
+warley[warley$Yield < 0, ]
+warley$Yield[warley$Yield < 0] <- NA
+
+Index = c(1:160)
+ggplot(warley, aes(Index, Yield, colour = Variety)) + geom_point(size = 3.25) +
+  scale_color_brewer(palette = "Spectral")
+```
+The only negative (and impossible) yield in the dataset is the "Eevee" variety at Horsham. 
+
+A quick visualisation of the data does not suggest any high-end outliers. 
+
+Most of the variety effects appear to be clumped together within the 7.5 to 2.5 range.
+
+We take note that the negative yield sample for the "Eevee" variety has been removed. This should not have a huge effect on determining variety merits at each individual site since there are still 9 "Eevee" varieties at Horsham. If the yield incorrected recorded had belonged to Narrabri then it may be necessary to pause and ponder. More discussion on this below. 
+
+```{r}
+
+yield = sort(tapply(warley$Yield, warley$Variety, mean, na.rm = TRUE), decreasing = TRUE)
+list(yield)
+```
+
+The greatest yields based on the mean of the replicates without considering for other effects appear to be Gengar, Eevee and Wartortle in that order. However, it is still far too early to draw conclusions as we have not yet analysed the factors in the experiment that can affect the yield. 
+
+The design of the experimenst is crucial as well. Upon peeking into the data, the experimental design focuses on 10 different varieties of Warley as treatment factors, with an equal number of replicates within each site. 
+
+The design of the field is visualised below.
+
+Before this we will reset all the factors to ensure that variety are represented from level 1 to 10.
+
+```{r}
+# Find which columns are factors
+factor_col <- vapply(warley, is.factor, logical(1))
+
+# Apply the factor() function to those columns, and assign then back into dataframe.
+warley[factor_col] <- lapply(warley[factor_col], factor)
+
+str(warley)
+``` 
+
+```{r}
+field_layout <- function(site, row, col){
+  field = matrix(data = NA, nrow = row, ncol = col)
+  
+  site = warley[warley$Site == site, ]
+
+  for(i in 0:row){
+    for(j in 0:col){
+      field[i, j] = site[site$Row == i & site$Column == j, ]$Variety
+      # field[i, j] = substr(as.character(site[site$Row == i & site$Column == j, ]$Variety), 1, 3)
+
+    }
+  }
+  
+  return(field)
+}
+
+field_layout("Horsham", 10, 10)
+field_layout("Narrabri", 5, 4)
+field_layout("Northstar", 5, 8)
+```
+
+However, it is apparent from the diagram that the design of the experiment for Horsham does not appear to be a balanced and randomised block design. With 10 varieties and a 10 x 10 plot, a Latin Square design to account for each combination of row and column blocking factors for each treatment could have been implemented.
+
+The design for Narrabri could leave possibilities of confounding, but with only 2 replicates it is hard to pick up as not all columns have replicates. 
+
+This is more significant for the largest site at Horsham, and should be noted and taken into account when comparing to other sites, and more importantly when analysing the treatment effects of the varieties.
+
+It is important to consider the impact that confounding may have on the overall correct treatment effect that we are seeing when considering all the samples. 
+
+In order to visualise the designs more carefully, let's have a look at how the varieties are distributed.
+
+```{r}
+
+variety_layout <- function(site, row, col, variety){
+  field = matrix(data = 0, nrow = row, ncol = col)
+  
+  site = warley[warley$Site == site, ]
+  var_row = site[site$Variety == variety, ]$Row
+  var_col = site[site$Variety == variety, ]$Column
+
+  for (i in 1:length(var_row)){
+      field[var_row[i], var_col[i]] = site[site$Row == var_row[i] & site$Column == var_col[i], ]$Variety
+      #field[var_row[i], var_col[i]] = substr(as.character(site[site$Row == var_row[i] & site$Column == var_col[i], ]$Variety), 1, 3)
+    }
+  return(field)
+}
+
+variety_all_fields <- function(variety){
+  print(variety_layout("Horsham", 10, 10, variety))
+  print(variety_layout("Narrabri", 5, 4, variety))
+  print(variety_layout("Northstar", 5, 8, variety))
+}
+
+variety_all_fields("Bayleef")
+```
+
+We provide only an example for the distribution of the "Bayleef" variety at the 3 sites. The experimental design has not been optimised. This was especially important for Horsham, where a 10x10 randomised Latin Square design was possible. 
+
+However, this should not faze the statistician too much.
+
+
+## Fitting an ANOVA model
+
+We are requested to provide the variety effects of all 10 Warley varieties for each individual site.
+
+It may be possible to consider each site separately and fit an entirely separate model for each site, but this would effectively be assuming that the 10 genetic varieties are different to each other at each site, which is clearly false. The difference in yield produced comparatively for the same species across different sites would be due to (unexplained) factors that is represented entirely by the "Site" variable. 
+More on this later. 
+
+Which model makes the most sense? Random effect models are said to analyse different treatment factors that are sampled from a greater population that is of interest. In this example, there are 10 varieties provided in this experiment and we have been told that 3 new lines are going to be produced. Hence treating the varieties as a random effect is plausible if we wanted to investigate the merit of the Warley species for future experiments. 
+
+Hence, we will use a mixed effects model that takes the sites as fixed effects because the following experiment will also utilise the 2 best Warley varieties along with 3 new ones.
+
+Now we consider the site effects.
+
+What is the most logical assumption here to make. We have been told that the growth of crops can be vastly different depending on the location where they are grown. In this context, that would likely mean that not only do the 3 sites influence the growth of the varieties but each site would have a different effect on each variety. 
+
+Hence, fitting `Sites` as a fixed effect may not be the most appropriate model. (See below)
+
+```
+lmer(Yield ~ 0 + Site + (0 + 1|Variety), data = warley)
+```
+
+Instead, we want to make sure that each combination of Site & Variety are accounted for with random effects.
+
+```
+lmer(Yield ~ 1 + Site + (1 + Site|Variety), data = warley)
+```
+
+
+__Fitting a random effects model__
+
+```{r}
+
+# Helper functions
+calc_var_merit <- function(model){
+  return(ranef(model)$Variety + fixef(model))
+}
+
+refactor_model <- function(model){
+  x = data.frame(cbind((model)[, "(Intercept)"], 
+             (model)[, "(Intercept)"] + (model)[, "SiteNarrabri"], 
+             (model)[, "(Intercept)"] + (model)[, "SiteNorthstar"] ), row.names = c(      sort(unique(as.character(warley$Variety))) ) ) 
+  
+  colnames(x) <- c("SiteHorsham", "SiteNarrabri", "SiteNorthstar")
+  
+  return(x)
+}
+
+rfm_site_fixed = lmer(Yield ~ 0 + Site + (0 + 1|Variety), data = warley)
+rfm_corr = lmer(Yield ~ 1 + (1 + Site|Variety) + Site, data = warley)
+rfm_power = lmer(Yield ~ 0 + (Site - 1|Variety), data = warley)
+
+#calc_var_merit(rfm_site_fixed)
+refactor_model(calc_var_merit(rfm_corr))
+
+final_model = refactor_model(coef(rfm_corr)$Variety)
+final_model
+
+power_model = data.frame(ranef(rfm_power)$Variety)
+# power_model
+#cor( as.vector(as.matrix(power_model)), as.vector(as.matrix(final_model)))
+#cor( as.vector(as.matrix(refactor_model(calc_var_merit(rfm_corr)))), as.vector(as.matrix(final_model)))
+
+
+VarCorr(rfm_corr)
+```
+
+From the above data, the two best performing varieties across all 3 sites are `Gangar` and `Wartortle`.
+
+The only difference is at Northstar, where `Eevee` outperforms `Gangar` to be the best crop.
+
+Hence for the next experiment we would want to use `Gangar` and `Wartortle`.
+
+```{r output}
+
+knitr::kable(final_model[order(final_model$SiteHorsham, decreasing=TRUE), ] )
+```
+
+
+## Experimental Design (5 marks)
+
+__Supply the experimental design with justification.__
+
+Let A, B, C, D, & E represent the 5 varieties that will be tested. 
+
+A = The `Gangar` Warley line 
+\newline
+B = The `Wartortle` Warley line
+\newline
+C = The 1st new variety
+\newline
+D = The 2nd new variety
+\newline
+E = The 3rd new variety
+\newline
+
+It is assumed that the rows and columns of the field at each site can affect the yield. Hence we want to include a double blocking effect for row and column. 
+
+The experimental design will be as below:
+
+__5 x 4 plot:__
+
+\begin{tabular}{c|cccc}
+  & 1 & 2 & 3 & 4 \\
+\hline
+1 & A & D & C & B \\
+2 & B & E & D & C \\
+3 & C & A & E & D \\
+4 & D & B & A & E \\
+5 & E & C & B & A \\
+\end{tabular}
+
+We use a RCBD when considering the vertical blocks. Vertical blocks 1-4 contains all 5 treatment factors.
+
+However, for the horizontal blocks, there is insufficient space to include all 5 treatments in the same row. Hence it is appropriate to use a BIBD whilst preserving the RBCD property of the vertical blocks. Looking at the design, all treatments have identical replicates, and all pairs of treatments occur the same number of times. Thus a BIBD is valid and also preserves the RCBD property of the vertical blocks. 
+
+
+
+__5 x 8 plot:__
+
+\begin{tabular}{c|cccccccc}
+  & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+\hline
+1 & A & C & E & B & D & A & D & C \\
+2 & C & D & B & E & A & C & B & A \\                        
+3 & D & E & A & C & B & E & C & D \\            
+4 & B & A & C & D & E & B & A & E \\           
+5 & E & B & D & A & C & D & E & B \\            
+\end{tabular}
+
+Similar to the 5 x 4 plot, the vertical blocks 1 - 8 contain all 5 treatment factors, making it a balanced, complete block design.
+
+However, since we consider the rows to contain blocking effects as well, the design of the horizontal blocks cannot be a BIBD.
+
+The best that can be done here is to ensure that each variety appears in each row at least 1 once, with 3 rows having an extra replicate for each variety. 
+
+
+
+__10 x 10 plot:__
+
+\begin{tabular}{c|cccccccccc}
+ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+1 & A & C & E & B & D & B & A & C & E & D \\
+2 & E & B & D & A & C & C & D & E & A & B \\             
+3 & D & A & C & E & B & E & B & A & D & C \\          
+4 & C & E & B & D & A & A & C & D & B & E \\          
+5 & B & D & A & C & E & D & E & B & C & A \\ 
+6 & D & B & A & E & C & B & D & C & A & E \\                                    
+7 & E & C & D & B & A & E & A & D & B & C \\                             
+8 & B & A & E & C & D & C & B & A & E & D \\                 
+9 & C & D & B & A & E & D & E & B & C & A \\                
+10 & A & E & C & D & B & A & C & E & D & B \\                 
+\end{tabular}
+
+The immediate inspiration that came through was 4 unique randomised Latin square designs, one in each quarter of the 10 x 10 field.
+
+This ensures that all colours and rows within the field have 2 replicates, and when designed properly will have no confounding issues when analysing the data. 
+
+
+
+## Discussion 
+
+__EDA__
+
+The negative `Eevee` value was dropped when analysing the data. Although removing an outlier is not something that should be done automatically, in this case I think it should be fine. As mentioned before, the incorrect data is from Horsham and removing that 1 data point will still leave 9 left. An alternative would be to replace the incorrect value with the mean value. However, we have to be careful here as the yield for Eevee differs dramatically across the 3 sites. In this case we could add the mean yield for Eevee for the Horsham site. 
+
+__Diagnostics__
+
+Let's check some basic normality assumptions first before continuing any further.
+
+```{r}
+
+res_mod = residuals(rfm_corr)
+boxplot(res_mod, xlab = "Residuals")
+qqnorm(res_mod)
+qqline(res_mod)
+plot(res_mod, ylab = "Residuals", xlab = "")
+plot(res_mod ~ fitted(rfm_corr))
+```
+
+The standard checks for ${\epsilon}_{i,k}$ ~ NID (0, $\sigma^2$) appear to be okay, with no significant abnormalities. 
+
+Note that the Barlett test is not appropriate here as the random effects model assumes have different variances. 
+
+
+__Rationale for the Choice of Model and Other Details__
+
+We first make the statement that varieties should be considered as random effects. This is standard practice in agriculture when future experiments are considered with different lines of the same breed are considered. This is directly relevant to the client's situation, as we treat the 10 varieties being analysed as a sample subset of the all possible Warley lines that the client has breeded. 
+
+The client has commented that yield values may be different for identical varieties across different sites. This suggests that the site location, and more specifically, the rows and columns within the sites could affect the yield and thus should be accounted for as blocking effects. 
+
+However, here we have not specifically accounted for rows and columns. Given that the designs of the experiment itself did not follow a statistical design, it was unclear how incorporating rows and columns as nested blocks within the site will effect the analysis. 
+
+However, this is definitely a next point of exploration and attention may be necessary for the model below:
+
+```
+lmer(Yield ~ Site/(Row+Column) + (0 + Site|Variety))
+```
+
+Note: I have attempted to fit Site/(Row*Column) but the residual effect was minimal.
+
+Another interpretation of the client's comment is the effect that the site overall will have on the variety, which was the rationale for arguing that each site should have a different effect on each individual plant variety. 
+
+Hence fitting the model with no correlation between site and variety does not make much sense in this context. If we compare the results:
+
+```
+lmer(Yield ~ Site + (0 + 1|Variety) )
+```
+
+```{r}
+
+ranef(rfm_site_fixed)
+ranef(rfm_corr)
+ 
+
+rfm_site_fixed
+rfm_corr
+```
+
+We can see here that some variety merits e.g. `Eevee` are highly discrepant amongst the different sites. Just a quick observation of the effects support our hypothesis for choosing the correlated `Site|Variety` mixed effects model.
+
+A quick comparison of REML between the two suggests that the correlated model is a better fit with the later having a lower REML value.  
+
+
+__Verifying Experimental Design__
+
+At the end, we verify the experimental designs for our plots.
+
+The function confirms that we do indeed have a RCBD design for the 5x4 and 5x8 if we consider each block to be of length 5. 
+
+However, if blocks are a length of 4 then we have a BIBD for the 5x4 plot.
+
+Lastly, we confirm that there are 4 unique Latin squares that we can use to fit the 10x10 plot, and each Latin square will be randomised of course. 
+
+
+```{r}
+
+field_5x8 = crossdes::find.BIB(5, 8, 5)
+crossdes::isGYD(field_5x8)
+field_4x5 = crossdes::find.BIB(5, 5, 4)
+crossdes::isGYD(field_4x5)
+field_5x4 = crossdes::find.BIB(5, 4, 5)
+crossdes::isGYD(field_5x4)
+latin_check = crossdes::des.MOLS(5, 5)
+latin_check
+crossdes::isGYD(latin_check)
+```

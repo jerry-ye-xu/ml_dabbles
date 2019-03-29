@@ -1,0 +1,321 @@
+Species,Site,Row,Column,Variety,Yield
+Warley,Narrabri,1,1,Vulpix,6.95
+Warley,Narrabri,1,2,Celebi,6.65
+Warley,Narrabri,1,3,Charizard,6.58
+Warley,Narrabri,1,4,Charizard,6.1
+Warley,Narrabri,2,1,Celebi,8.47
+Warley,Narrabri,2,2,Bayleef,4.66
+Warley,Narrabri,2,3,Vulpix,2.77
+Warley,Narrabri,2,4,Flygon,7.63
+Warley,Narrabri,3,1,Lugia,6.22
+Warley,Narrabri,3,2,Flygon,7.54
+Warley,Narrabri,3,3,Eevee,8.38
+Warley,Narrabri,3,4,Beedrill,7.22
+Warley,Narrabri,4,1,Wartortle,9.9
+Warley,Narrabri,4,2,Gangar,7.9
+Warley,Narrabri,4,3,Bayleef,5.29
+Warley,Narrabri,4,4,Wartortle,8.17
+Warley,Narrabri,5,1,Lugia,8.17
+Warley,Narrabri,5,2,Eevee,7.8
+Warley,Narrabri,5,3,Beedrill,7.65
+Warley,Narrabri,5,4,Gangar,7.97
+Wheat,Narrabri,1,1,Crusader,1.84
+Wheat,Narrabri,1,2,Emu Rock,4.66
+Wheat,Narrabri,1,3,Crusader,4.79
+Wheat,Narrabri,1,4,Magenta,2.75
+Wheat,Narrabri,2,1,Emu Rock,3.32
+Wheat,Narrabri,2,2,Yipti,4.45
+Wheat,Narrabri,2,3,Axe,6.29
+Wheat,Narrabri,2,4,Cham 6,2.7
+Wheat,Narrabri,3,1,Suntop,3.42
+Wheat,Narrabri,3,2,Mace,4.53
+Wheat,Narrabri,3,3,Yipti,6.13
+Wheat,Narrabri,3,4,Magenta,2.78
+Wheat,Narrabri,4,1,Mace,3.21
+Wheat,Narrabri,4,2,Gladius,4.43
+Wheat,Narrabri,4,3,Scout,6.16
+Wheat,Narrabri,4,4,Gladius,2.89
+Wheat,Narrabri,5,1,Axe,3.41
+Wheat,Narrabri,5,2,Scout,4.5
+Wheat,Narrabri,5,3,Suntop,6.54
+Wheat,Narrabri,5,4,Cham 6,2.82
+Warley,Northstar,1,1,Eevee,14.31
+Warley,Northstar,1,2,Flygon,4.5
+Warley,Northstar,1,3,Beedrill,3.61
+Warley,Northstar,1,4,Lugia,5.86
+Warley,Northstar,1,5,Beedrill,3.56
+Warley,Northstar,1,6,Lugia,5.37
+Warley,Northstar,1,7,Wartortle,4.6
+Warley,Northstar,1,8,Gangar,6.22
+Warley,Northstar,2,1,Wartortle,5.98
+Warley,Northstar,2,2,Celebi,6.1
+Warley,Northstar,2,3,Vulpix,5.63
+Warley,Northstar,2,4,Flygon,5.89
+Warley,Northstar,2,5,Wartortle,6.47
+Warley,Northstar,2,6,Bayleef,4.03
+Warley,Northstar,2,7,Celebi,5.9
+Warley,Northstar,2,8,Charizard,4.45
+Warley,Northstar,3,1,Celebi,6.2
+Warley,Northstar,3,2,Charizard,4.49
+Warley,Northstar,3,3,Flygon,6.06
+Warley,Northstar,3,4,Eevee,9.41
+Warley,Northstar,3,5,Vulpix,5.62
+Warley,Northstar,3,6,Eevee,9.63
+Warley,Northstar,3,7,Eevee,9.43
+Warley,Northstar,3,8,Charizard,4.67
+Warley,Northstar,4,1,Vulpix,5.73
+Warley,Northstar,4,2,Bayleef,4.68
+Warley,Northstar,4,3,Beedrill,5.14
+Warley,Northstar,4,4,Lugia,7.19
+Warley,Northstar,4,5,Celebi,6.3
+Warley,Northstar,4,6,Beedrill,5.4
+Warley,Northstar,4,7,Bayleef,4.58
+Warley,Northstar,4,8,Lugia,6.7
+Warley,Northstar,5,1,Gangar,10.13
+Warley,Northstar,5,2,Bayleef,5.72
+Warley,Northstar,5,3,Vulpix,7.67
+Warley,Northstar,5,4,Flygon,7.83
+Warley,Northstar,5,5,Gangar,9.55
+Warley,Northstar,5,6,Charizard,7.23
+Warley,Northstar,5,7,Gangar,9.79
+Warley,Northstar,5,8,Wartortle,7.8
+Wheat,Northstar,1,1,Suntop,4.06
+Wheat,Northstar,1,2,Crusader,4.1
+Wheat,Northstar,1,3,Cham 6,3.58
+Wheat,Northstar,1,4,Yipti,3.16
+Wheat,Northstar,1,5,Mace,4.3
+Wheat,Northstar,1,6,Cham 6,3.43
+Wheat,Northstar,1,7,Suntop,5.03
+Wheat,Northstar,1,8,Gladius,3.4
+Wheat,Northstar,2,1,Suntop,4.7
+Wheat,Northstar,2,2,Magenta,3.94
+Wheat,Northstar,2,3,Axe,4.88
+Wheat,Northstar,2,4,Axe,5.24
+Wheat,Northstar,2,5,Mace,5.52
+Wheat,Northstar,2,6,Crusader,3.74
+Wheat,Northstar,2,7,Axe,4.35
+Wheat,Northstar,2,8,Magenta,3.6
+Wheat,Northstar,3,1,Scout,4.77
+Wheat,Northstar,3,2,Mace,6.41
+Wheat,Northstar,3,3,Cham 6,5.2
+Wheat,Northstar,3,4,Scout,4.9
+Wheat,Northstar,3,5,Emu Rock,5.49
+Wheat,Northstar,3,6,Emu Rock,5.99
+Wheat,Northstar,3,7,Yipti,4.5
+Wheat,Northstar,3,8,Gladius,4.61
+Wheat,Northstar,4,1,Axe,4.02
+Wheat,Northstar,4,2,Magenta,3.28
+Wheat,Northstar,4,3,Magenta,4.15
+Wheat,Northstar,4,4,Suntop,4.54
+Wheat,Northstar,4,5,Emu Rock,4.94
+Wheat,Northstar,4,6,Yipti,2.97
+Wheat,Northstar,4,7,Gladius,3.27
+Wheat,Northstar,4,8,Crusader,3.27
+Wheat,Northstar,5,1,Scout,6.86
+Wheat,Northstar,5,2,Cham 6,7.12
+Wheat,Northstar,5,3,Scout,7.34
+Wheat,Northstar,5,4,Gladius,6.66
+Wheat,Northstar,5,5,Yipti,6.34
+Wheat,Northstar,5,6,Mace,7.98
+Wheat,Northstar,5,7,Crusader,7.04
+Wheat,Northstar,5,8,Emu Rock,7.49
+Warley,Horsham,1,1,Flygon,7.3
+Warley,Horsham,1,2,Gangar,6.8
+Warley,Horsham,1,3,Lugia,5.23
+Warley,Horsham,1,4,Vulpix,1.45
+Warley,Horsham,1,5,Eevee,4.17
+Warley,Horsham,1,6,Flygon,7.92
+Warley,Horsham,1,7,Celebi,7.67
+Warley,Horsham,1,8,Bayleef,4.05
+Warley,Horsham,1,9,Bayleef,3.75
+Warley,Horsham,1,10,Beedrill,7.28
+Warley,Horsham,2,1,Beedrill,6.99
+Warley,Horsham,2,2,Charizard,6.35
+Warley,Horsham,2,3,Wartortle,6.12
+Warley,Horsham,2,4,Celebi,5.82
+Warley,Horsham,2,5,Lugia,4.45
+Warley,Horsham,2,6,Vulpix,4.52
+Warley,Horsham,2,7,Eevee,6.32
+Warley,Horsham,2,8,Charizard,5.73
+Warley,Horsham,2,9,Celebi,4.89
+Warley,Horsham,2,10,Bayleef,4.4
+Warley,Horsham,3,1,Gangar,6.83
+Warley,Horsham,3,2,Celebi,6
+Warley,Horsham,3,3,Beedrill,5.69
+Warley,Horsham,3,4,Lugia,5.11
+Warley,Horsham,3,5,Beedrill,5.41
+Warley,Horsham,3,6,Charizard,7.21
+Warley,Horsham,3,7,Charizard,7.54
+Warley,Horsham,3,8,Flygon,2.44
+Warley,Horsham,3,9,Wartortle,5.9
+Warley,Horsham,3,10,Flygon,6.64
+Warley,Horsham,4,1,Wartortle,8.18
+Warley,Horsham,4,2,Vulpix,4.05
+Warley,Horsham,4,3,Eevee,4.47
+Warley,Horsham,4,4,Wartortle,7.45
+Warley,Horsham,4,5,Bayleef,3.55
+Warley,Horsham,4,6,Celebi,7.24
+Warley,Horsham,4,7,Celebi,7.65
+Warley,Horsham,4,8,Flygon,6.21
+Warley,Horsham,4,9,Wartortle,6.6
+Warley,Horsham,4,10,Lugia,6.18
+Warley,Horsham,5,1,Lugia,6.28
+Warley,Horsham,5,2,Celebi,6.18
+Warley,Horsham,5,3,Bayleef,3.82
+Warley,Horsham,5,4,Gangar,6.66
+Warley,Horsham,5,5,Flygon,5.52
+Warley,Horsham,5,6,Charizard,7.53
+Warley,Horsham,5,7,Bayleef,6.05
+Warley,Horsham,5,8,Wartortle,7.24
+Warley,Horsham,5,9,Gangar,11.9
+Warley,Horsham,5,10,Flygon,6.81
+Warley,Horsham,6,1,Charizard,6.2
+Warley,Horsham,6,2,Beedrill,6.41
+Warley,Horsham,6,3,Bayleef,3.1
+Warley,Horsham,6,4,Vulpix,3.36
+Warley,Horsham,6,5,Beedrill,5.21
+Warley,Horsham,6,6,Vulpix,4.33
+Warley,Horsham,6,7,Bayleef,5.54
+Warley,Horsham,6,8,Wartortle,6.3
+Warley,Horsham,6,9,Eevee,-0.22
+Warley,Horsham,6,10,Beedrill,6.65
+Warley,Horsham,7,1,Flygon,6.94
+Warley,Horsham,7,2,Celebi,5.92
+Warley,Horsham,7,3,Charizard,5.53
+Warley,Horsham,7,4,Eevee,4.6
+Warley,Horsham,7,5,Gangar,4.51
+Warley,Horsham,7,6,Eevee,5.63
+Warley,Horsham,7,7,Lugia,13.26
+Warley,Horsham,7,8,Flygon,9.74
+Warley,Horsham,7,9,Charizard,4.82
+Warley,Horsham,7,10,Bayleef,4.2
+Warley,Horsham,8,1,Celebi,6.73
+Warley,Horsham,8,2,Beedrill,6.77
+Warley,Horsham,8,3,Wartortle,6.57
+Warley,Horsham,8,4,Charizard,6.66
+Warley,Horsham,8,5,Eevee,3.9
+Warley,Horsham,8,6,Lugia,6.36
+Warley,Horsham,8,7,Eevee,6.4
+Warley,Horsham,8,8,Wartortle,6.51
+Warley,Horsham,8,9,Bayleef,3.34
+Warley,Horsham,8,10,Beedrill,7.05
+Warley,Horsham,9,1,Gangar,7.19
+Warley,Horsham,9,2,Wartortle,7.46
+Warley,Horsham,9,3,Vulpix,3.13
+Warley,Horsham,9,4,Lugia,5.84
+Warley,Horsham,9,5,Gangar,5.48
+Warley,Horsham,9,6,Vulpix,5.04
+Warley,Horsham,9,7,Gangar,7.85
+Warley,Horsham,9,8,Lugia,5.53
+Warley,Horsham,9,9,Gangar,5.7
+Warley,Horsham,9,10,Lugia,6.31
+Warley,Horsham,10,1,Eevee,5.34
+Warley,Horsham,10,2,Vulpix,3.79
+Warley,Horsham,10,3,Flygon,5.74
+Warley,Horsham,10,4,Gangar,11.47
+Warley,Horsham,10,5,Vulpix,2.46
+Warley,Horsham,10,6,Charizard,7.28
+Warley,Horsham,10,7,Eevee,6.18
+Warley,Horsham,10,8,Vulpix,2.92
+Warley,Horsham,10,9,Beedrill,5.47
+Warley,Horsham,10,10,Celebi,6.15
+Wheat,Horsham,1,1,Cham 6,0
+Wheat,Horsham,1,2,Emu Rock,9.08
+Wheat,Horsham,1,3,Cham 6,6.13
+Wheat,Horsham,1,4,Emu Rock,8.79
+Wheat,Horsham,1,5,Gladius,8.39
+Wheat,Horsham,1,6,Suntop,7.29
+Wheat,Horsham,1,7,Magenta,5.41
+Wheat,Horsham,1,8,Emu Rock,7.92
+Wheat,Horsham,1,9,Suntop,6.53
+Wheat,Horsham,1,10,Axe,7.85
+Wheat,Horsham,2,1,Magenta,0
+Wheat,Horsham,2,2,Cham 6,8.85
+Wheat,Horsham,2,3,Yipti,5.7
+Wheat,Horsham,2,4,Scout,9.31
+Wheat,Horsham,2,5,Emu Rock,9.59
+Wheat,Horsham,2,6,Scout,8.06
+Wheat,Horsham,2,7,Gladius,5.31
+Wheat,Horsham,2,8,Crusader,6.34
+Wheat,Horsham,2,9,Gladius,6.66
+Wheat,Horsham,2,10,Mace,8.84
+Wheat,Horsham,3,1,Scout,0
+Wheat,Horsham,3,2,Crusader,7.76
+Wheat,Horsham,3,3,Suntop,6.66
+Wheat,Horsham,3,4,Axe,8.94
+Wheat,Horsham,3,5,Magenta,9.13
+Wheat,Horsham,3,6,Crusader,6.35
+Wheat,Horsham,3,7,Emu Rock,5.96
+Wheat,Horsham,3,8,Crusader,7.01
+Wheat,Horsham,3,9,Emu Rock,7.65
+Wheat,Horsham,3,10,Crusader,6.87
+Wheat,Horsham,4,1,Yipti,0
+Wheat,Horsham,4,2,Magenta,8.67
+Wheat,Horsham,4,3,Yipti,5.29
+Wheat,Horsham,4,4,Cham 6,8.55
+Wheat,Horsham,4,5,Mace,9.42
+Wheat,Horsham,4,6,Magenta,6.85
+Wheat,Horsham,4,7,Suntop,4.9
+Wheat,Horsham,4,8,Mace,8.16
+Wheat,Horsham,4,9,Cham 6,6.4
+Wheat,Horsham,4,10,Suntop,7.53
+Wheat,Horsham,5,1,Emu Rock,7.56
+Wheat,Horsham,5,2,Yipti,7.62
+Wheat,Horsham,5,3,Axe,5.79
+Wheat,Horsham,5,4,Magenta,7.93
+Wheat,Horsham,5,5,Magenta,8
+Wheat,Horsham,5,6,Gladius,6.6
+Wheat,Horsham,5,7,Mace,5.34
+Wheat,Horsham,5,8,Axe,7.24
+Wheat,Horsham,5,9,Emu Rock,6.65
+Wheat,Horsham,5,10,Mace,7.69
+Wheat,Horsham,6,1,Cham 6,8.22
+Wheat,Horsham,6,2,Gladius,9.5
+Wheat,Horsham,6,3,Magenta,7.22
+Wheat,Horsham,6,4,Yipti,8.66
+Wheat,Horsham,6,5,Mace,10.3
+Wheat,Horsham,6,6,Axe,8.21
+Wheat,Horsham,6,7,Cham 6,5.8
+Wheat,Horsham,6,8,Axe,8.68
+Wheat,Horsham,6,9,Gladius,7.39
+Wheat,Horsham,6,10,Crusader,7.2
+Wheat,Horsham,7,1,Yipti,5.72
+Wheat,Horsham,7,2,Scout,8.46
+Wheat,Horsham,7,3,Yipti,4.59
+Wheat,Horsham,7,4,Axe,7.47
+Wheat,Horsham,7,5,Cham 6,7.56
+Wheat,Horsham,7,6,Yipti,5.53
+Wheat,Horsham,7,7,Gladius,3.61
+Wheat,Horsham,7,8,Scout,6.95
+Wheat,Horsham,7,9,Mace,6.25
+Wheat,Horsham,7,10,Cham 6,6.39
+Wheat,Horsham,8,1,Suntop,7.89
+Wheat,Horsham,8,2,Cham 6,9.21
+Wheat,Horsham,8,3,Suntop,6.56
+Wheat,Horsham,8,4,Crusader,7.46
+Wheat,Horsham,8,5,Crusader,7.92
+Wheat,Horsham,8,6,Axe,7.74
+Wheat,Horsham,8,7,Gladius,5.27
+Wheat,Horsham,8,8,Suntop,7.97
+Wheat,Horsham,8,9,Emu Rock,7.61
+Wheat,Horsham,8,10,Gladius,8.19
+Wheat,Horsham,9,1,Axe,7.55
+Wheat,Horsham,9,2,Emu Rock,9.45
+Wheat,Horsham,9,3,Crusader,4.72
+Wheat,Horsham,9,4,Scout,9.04
+Wheat,Horsham,9,5,Scout,9.2
+Wheat,Horsham,9,6,Suntop,7.28
+Wheat,Horsham,9,7,Yipti,4.74
+Wheat,Horsham,9,8,Scout,8.23
+Wheat,Horsham,9,9,Scout,7.3
+Wheat,Horsham,9,10,Axe,8.02
+Wheat,Horsham,10,1,Scout,8.75
+Wheat,Horsham,10,2,Crusader,7.86
+Wheat,Horsham,10,3,Suntop,6.57
+Wheat,Horsham,10,4,Gladius,8.72
+Wheat,Horsham,10,5,Magenta,9.07
+Wheat,Horsham,10,6,Magenta,7.61
+Wheat,Horsham,10,7,Mace,6.38
+Wheat,Horsham,10,8,Yipti,7.45
+Wheat,Horsham,10,9,Mace,7.98
+Wheat,Horsham,10,10,Mace,9.03

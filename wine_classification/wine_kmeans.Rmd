@@ -1,0 +1,134 @@
+---
+title: "wine_kmeans"
+author: "Jerry Xu"
+date: "3 August 2018"
+output: pdf_document
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(factoextra)
+library(kmed)
+```
+Helpful references:
+
+https://www3.nd.edu/~steve/computing_with_data/24_dplyr/dplyr.html
+
+
+
+### Gower distances:
+
+1) Manhatten distance for __continous variables__
+2) __Ordinal variables__ are ranked then distance calculated with Manhatten
+3) __Binary variables__ <- Jaccard matching coefficient is used. (when both variables lack attribute, 
+    JMC treats it as either match or mismatch)
+4) Dice matching coeffient with __nominal variables__
+
+```{r}
+
+header = c("Class" ,"Alcohol" , "Malic acid", "Ash", "Alcalinity of ash", "Magnesium", "Total phenols", 
+          "Flavanoids", "Nonflavanoid phenols", "Proanthocyanins", "Color intensity", "Hue", "OD280/OD315 of diluted wines", "Proline")
+
+wine_truth = read.csv("wine.data", col.names=header)
+
+wine_truth$Class <- as.factor(wine_truth$Class)
+wine_truth
+```
+
+### K-means clustering
+
+Used for numeric only, once distances are computed for qualitative variables.
+
+```{r}
+
+wine_test = select(wine_truth, -Class)
+wine_test
+
+```
+
+```{r}
+wine_groups = kmeans(wine_test, 3, iter.max=10, nstart=10)
+```
+
+```{r}
+wine_groups$size
+as.vector(count(wine_truth, var=Class))$n
+```
+
+```{r}
+fviz_nbclust(wine_test, kmeans, method="wss") + geom_vline(xintercept=4, linetype=2)
+# wss = within sum of sqs 
+```
+
+
+
+```{r}
+wine_groups = kmeans(wine_test, 3, iter.max=10, nstart=8)
+fviz_cluster(wine_groups, data=wine_test, 
+             ellipse.type = "norm", 
+             ggtheme=theme_minimal(),
+             star.plot= TRUE)
+```
+
+
+
+```{r}
+
+wine_test_scale <- scale(wine_test)
+wine_groups_scale = kmeans(wine_test_scale, 3, iter.max=10, nstart=10)
+
+fviz_cluster(wine_groups_scale, data=wine_test_scale, 
+             ellipse.type = "norm", 
+             ggtheme=theme_minimal()
+             )
+```
+
+```{r}
+wine_test
+```
+
+
+```{r}
+wine_test_scale2 <- scale(wine_test)
+print(dim(wine_test_scale2))
+wine_test_dist2 <- dist(wine_test_scale2)
+
+
+# What does the dist() do?
+# wine_test_dist2
+length(wine_test_dist2)
+wine_test_dist2 # printout is omitted
+```
+
+
+```{r}
+wine_groups_scale2 = kmeans(wine_test_dist2, 3, iter.max=10, nstart=10)
+
+fviz_cluster(wine_groups_scale2, data=wine_test_scale2, 
+             ellipse.type = "norm", 
+             ggtheme=theme_minimal()
+             )
+```
+
+If there were quantitative variables, then we can use Gower's distances as above.
+
+^ How do we deal with this?
+
+First let's simulate some fake categorical variables
+
+```{r}
+a <- matrix(sample(1:4, 7*3, replace = TRUE), 7, 3)
+matching(a, a)
+a
+
+b <- matrix(sample(1:2, 7*3, replace = TRUE), 7, 3)
+b
+coocurance(b)
+```
+
+
+```{r}
+
+```
+
